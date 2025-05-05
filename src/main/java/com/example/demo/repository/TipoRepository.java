@@ -1,10 +1,10 @@
 package com.example.demo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import com.example.demo.entidades.Tipo;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface TipoRepository extends JpaRepository<Tipo, Long> {
+import java.util.Optional;
+
+public interface TipoRepository extends JpaRepository<Tipo, Integer> {
+    Optional<Tipo> findByNombre(String nombre);
 }

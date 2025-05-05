@@ -1,35 +1,38 @@
 package com.example.demo.entidades;
 
-import jakarta.persistence.*;
-import lombok.*;
+import java.util.List;
 
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "usuario")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "usuario_id_seq")
-    @SequenceGenerator(name = "usuario_id_seq", sequenceName = "usuario_id_seq", allocationSize = 1)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+    @Column(nullable = false, length = 50)
     private String username;
 
+    @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
 
+    @Column(nullable = false, length = 100)
     private String password;
-
-    @ManyToMany
-    @JoinTable(
-        name = "favorito",
-        joinColumns = @JoinColumn(name = "usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "manga_id")
-    )
-    private Set<Manga> favoritos;
 }
