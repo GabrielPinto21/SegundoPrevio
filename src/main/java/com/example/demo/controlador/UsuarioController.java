@@ -45,7 +45,7 @@ public class UsuarioController {
         summary = "Eliminar manga de favoritos",
         description = "Elimina un manga de la lista de favoritos del usuario"
     )
-    public ResponseEntity<Void> deleteFavorito(@PathVariable String username, @PathVariable Long mangaId) {
+    public ResponseEntity<Void> deleteFavorito(@PathVariable String username, @PathVariable int mangaId) {
         Optional<Usuario> usuario = usuarioRepository.findAll().stream()
                 .filter(u -> u.getUsername().equals(username))
                 .findFirst();

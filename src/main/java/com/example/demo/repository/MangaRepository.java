@@ -8,7 +8,7 @@ import com.example.demo.entidades.Manga;
 import java.util.List;
 
 @Repository
-public interface MangaRepository extends JpaRepository<Manga, Long> {
+public interface MangaRepository extends JpaRepository<Manga, Integer> {
     List<Manga> findByNombreContainingIgnoreCase(String nombre);
 }
 

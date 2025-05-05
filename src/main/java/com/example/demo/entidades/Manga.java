@@ -15,7 +15,7 @@ public class Manga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "manga_id_seq")
     @SequenceGenerator(name = "manga_id_seq", sequenceName = "manga_id_seq", allocationSize = 1)
-    private Long id;
+    private int id;
 
     private String nombre;
 
