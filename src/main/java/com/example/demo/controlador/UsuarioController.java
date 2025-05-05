@@ -3,23 +3,41 @@ package com.example.demo.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.dtos.FavoritoDTO;
-import com.example.demo.service.FavoritoService;
+import com.example.demo.dtos.UsuarioDTO;
+import com.example.demo.entidades.Usuario;
+import com.example.demo.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-	@Autowired
-	private FavoritoService favoritoService;
-	
-	@GetMapping("/{username}/favoritos")
-	public List<FavoritoDTO> getUserFavoritos(@PathVariable String username) {
-		return favoritoService.getFavoritosByUsername(username);
-	}
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @GetMapping
+    public List<UsuarioDTO> getAllUsuarios() {
+        return usuarioService.getAllUsuarios();
+    }
+
+    @GetMapping("/{username}")
+    public UsuarioDTO getUsuarioByUsername(@PathVariable String username) {
+        return usuarioService.getUsuarioByUsername(username);
+    }
+
+    @PostMapping
+    public UsuarioDTO createUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.createUsuario(usuario);
+    }
+
+    @PutMapping("/{id}")
+    public UsuarioDTO updateUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
+        return usuarioService.updateUsuario(id, usuario);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUsuario(@PathVariable Integer id) {
+        usuarioService.deleteUsuario(id);
+    }
 }
